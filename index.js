@@ -38,8 +38,9 @@ async function Main(){
 
     await sequelize.sync({/*force: true*/});
     
-    app.listen({port: 4000}, ()=>console.log('Corriendo GraphQL API server en: http://localhost:4000/graphql'));
-
+    app.listen({ port: 4000, host: "0.0.0.0" }, () =>
+    console.log("Corriendo GraphQL API server en:", 4000)
+  );
   } catch (error) {
     console.log('No se pudo conectar a la base de datos', error)
   }
