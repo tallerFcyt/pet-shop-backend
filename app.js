@@ -10,9 +10,8 @@ const app = express();
 app.use(express.json());
 app.use(cors({
   origin: '*',
-  methods: 'GET,PUT,POST,DELETE',
-  preflightContinue: false,
-  optionsSuccessStatus: 204,
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true
 }));
 
