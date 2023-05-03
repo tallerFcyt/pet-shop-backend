@@ -1,0 +1,28 @@
+{
+  "name": "pet-shop-backend",
+  "version": "1.0.0",
+  "description": "Pet Shop, es un E-commerce en el cual se podran vender productos de animales y a la vez brindar servicios para las mascotas de cada cliente. Es un trabajo practico final de la materia \"Taller de integración\".",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon src/index.js"
+  },
+  "author": "Bidegain Tomás, Picart Fernando, Traverso Joaquin",
+  "license": "ISC",
+  "dependencies": {
+    "apollo-server-express": "^3.10.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-graphql": "^0.12.0",
+    "graphql": "^15.8.0",
+    "mercadopago": "^1.5.15",
+    "node-cron": "^3.0.2",
+    "nodemailer": "^6.9.1",
+    "pg": "^8.8.0",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.25.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
