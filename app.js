@@ -8,7 +8,13 @@ const server = new ApolloServer({ typeDefs, resolvers,
 
 const app = express();
 app.use(express.json());
-app.use(cors({origin: 'http://localhost:3000'}));
+app.use(cors({
+  origin: '*',
+  methods: 'GET,PUT,POST,DELETE',
+  preflightContinue: false,
+  optionsSuccessStatus: 204,
+  credentials: true
+}));
 
 app.use(router)
 
