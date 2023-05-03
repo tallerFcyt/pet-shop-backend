@@ -7,7 +7,8 @@ module.exports = {
     password: process.env.DB_PASSWORD,
     host: process.env.DB_HOST,
     port: process.env.DB_PORT,
-    database: process.env.DB_DATABASE
+    database: process.env.DB_DATABASE,
+    db_render: process.env.DB_HOST_RENDER
   },
   admin: {
     email: process.env.EMAIL_ADMIN,
