@@ -2,10 +2,16 @@ const { gql } = require("apollo-server-express");
 const { ProductBuy } = require("../models/ProductBuy");
 const { Buy } = require("../models/Buy");
 const { Product } = require("../models/Product");
+const { Shipment } = require("../models/Shipment");
+const { Op } = require("sequelize");
 
 const productBuyTypeDefs = gql`
+  type Filter {
+    user_id: String
+  }
+
   extend type Query {
-    getAllProductBuy: [BuyInfo]
+    getAllProductBuy(user_id: String, state_id: Int, start_date: String, end_date: String, minTotalPrice:Float, maxTotalPrice: Float): [BuyInfo]
     getProductBuyByUser(user_id: String!): [BuyInfo]
   }
 
@@ -43,9 +49,32 @@ const productBuyTypeDefs = gql`
 
 const productBuyResolvers = {
   Query: {
-    async getAllProductBuy(root) {
+    async getAllProductBuy(root, {user_id, state_id, start_date, end_date, minTotalPrice, maxTotalPrice}) {
+
+      const whereBuy = {}
+
+      if(user_id) {
+        whereBuy.user_id = user_id
+      }
+
+      if(start_date && end_date) {
+        whereBuy.createdAt = {[Op.between]: [start_date, end_date]}
+      }
+      
+      if(minTotalPrice && maxTotalPrice){
+        whereBuy.totalPrice = {[Op.between]: [minTotalPrice, maxTotalPrice]}
+      } 
+
+      const whereShipment = {}
+
+      if(state_id) {
+        whereShipment.state_id = state_id
+      }
+
+
       const data = await ProductBuy.findAll({
-        include: [Buy, Product],
+        include: [{model: Buy, where: whereBuy, include: [{model: Shipment, where: whereShipment}]}, Product],
+        // where
       });
 
       const groupedData = data.reduce((acc, item) => {
