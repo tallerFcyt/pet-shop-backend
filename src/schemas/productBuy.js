@@ -6,10 +6,6 @@ const { Shipment } = require("../models/Shipment");
 const { Op } = require("sequelize");
 
 const productBuyTypeDefs = gql`
-  type Filter {
-    user_id: String
-  }
-
   extend type Query {
     getAllProductBuy(user_id: String, state_id: Int, start_date: String, end_date: String, minTotalPrice:Float, maxTotalPrice: Float): [BuyInfo]
     getProductBuyByUser(user_id: String!): [BuyInfo]

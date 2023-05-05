@@ -45,7 +45,7 @@ const userResolvers = {
       return data;  
     },
     async getAllUsers(root){
-    const data = await User.findAll();
+    const data = await User.findAll({ where: { isAdmin: false }});
     return data;
     },
   },
