@@ -32,9 +32,9 @@ const Payment = async (req, res) => {
       name
     },
     back_urls: {
-      success: 'https://petshop-final.netlify.app/buys',
-      pending: 'https://petshop-final.netlify.app/payment-pending',
-      failure: 'https://petshop-final.netlify.app/cart'
+      success: 'http://localhost:3000/buys',
+      pending: 'http://localhost:3000/payment-pending',
+      failure: 'http://localhost:3000/cart'
     },
     auto_return: 'approved',
     statement_descriptor: "PET-SHOP"
@@ -61,9 +61,9 @@ const PaymentService = async (req, res) => {
       name
     },
     back_urls: {
-      success: 'https://petshop-final.netlify.app/services',
-      pending: 'https://petshop-final.netlify.app/payment-service-pending',
-      failure: 'https://petshop-final.netlify.app/services'
+      success: 'http://localhost:3000/services',
+      pending: 'http://localhost:3000/payment-service-pending',
+      failure: 'http://localhost:3000/services'
     },
     auto_return: 'approved',
     statement_descriptor: "PET-SHOP"
