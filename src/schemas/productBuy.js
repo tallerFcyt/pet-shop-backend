@@ -57,7 +57,7 @@ const productBuyResolvers = {
         whereBuy.createdAt = {[Op.between]: [start_date, end_date]}
       }
       
-      if(minTotalPrice && maxTotalPrice){
+      if(minTotalPrice >= 0 && maxTotalPrice){
         whereBuy.totalPrice = {[Op.between]: [minTotalPrice, maxTotalPrice]}
       } 
 
