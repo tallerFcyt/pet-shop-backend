@@ -123,7 +123,6 @@ const getItems = async (req, res) => {
   // Obtener los datos del pago
   const paymentInfo = await mercadopago.payment.get(payment_id);
   //Array de productos
-  console.log(paymentInfo.status)
 
   if (paymentInfo.status === 400) res.status(400).send('error get items')
 
@@ -132,4 +131,4 @@ const getItems = async (req, res) => {
   return res.send([totalAmount, items])
 }
 
-module.exports = {Payment, sendNotification, getItems, PaymentService};
+module.exports = { Payment, sendNotification, getItems, PaymentService };

@@ -1,6 +1,7 @@
 const { gql } = require("apollo-server-express");
 const { Op } = require("sequelize")
 const { Product } = require("../models/Product");
+const { sequelize } = require("../../database/db");
 
 const productTypeDefs = gql`
   extend type Query {
@@ -49,9 +50,10 @@ const productResolvers = {
     },
     async getAllProductByFilter(root, { filter }) {
       return Product.findAll({
-        where: { title:{
-          [Op.startsWith]: filter
-        }} 
+        where: sequelize.where(
+          sequelize.fn('lower', sequelize.col('title')),
+          { [Op.iLike]: `%${filter.toLowerCase()}%` }
+        )
       });
     },
   },
