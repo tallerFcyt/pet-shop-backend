@@ -1,6 +1,7 @@
 const { gql } = require("apollo-server-express");
 const { Op } = require("sequelize")
 const { Product } = require("../models/Product");
+const { sequelize } = require("../../database/db");
 
 const productTypeDefs = gql`
   extend type Query {
