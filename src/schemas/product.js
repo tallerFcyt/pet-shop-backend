@@ -49,9 +49,10 @@ const productResolvers = {
     },
     async getAllProductByFilter(root, { filter }) {
       return Product.findAll({
-        where: { title:{
-          [Op.startsWith]: filter
-        }} 
+        where: sequelize.where(
+          sequelize.fn('lower', sequelize.col('title')),
+          { [Op.iLike]: `%${filter.toLowerCase()}%` }
+        )
       });
     },
   },
